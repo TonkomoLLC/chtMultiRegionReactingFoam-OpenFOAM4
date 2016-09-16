@@ -170,6 +170,9 @@ forAll(fluidRegions, i)
         ).ptr()
     );
 
+// Set the turbulence into the reaction model
+    reactionFluid[i].setTurbulence(turbulence[i]);
+
     p_rghFluid.set
     (
         i,
