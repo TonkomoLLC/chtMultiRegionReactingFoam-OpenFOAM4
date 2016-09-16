@@ -50,7 +50,7 @@ forAll(fluidRegions, i)
                 IOobject::NO_READ,
                 IOobject::AUTO_WRITE
             ),
-            reactionFluid[i].rho()
+            reactionFluid[i].thermo().rho()
         )
     );
 
