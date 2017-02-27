@@ -25,6 +25,8 @@ EXE_LIBS = \
     -lfiniteVolume \
     -lcompressibleTransportModels \
     -lfluidThermophysicalModels \
+    -lfluidThermophysicalModels \
+    -lthermophysicalFunctions \
     -lsolidThermo \
     -lspecie \
     -lturbulenceModels \
