@@ -1,0 +1,382 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+U
+{
+    internalField   uniform (0 0 0);
+    boundaryField
+    {
+        ".*"
+        {
+            type            fixedValue;
+            value           uniform (0 0 0);
+        }
+        minX
+        {
+            type            fixedValue;
+            value           uniform (0.5 0 0);
+        }
+        maxX
+        {
+            type            fixedValue;
+            value           uniform (-0.5 0 0);
+        }
+    }
+}
+
+T
+{
+    internalField   uniform 300;
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+        }
+        minX
+        {
+            type            fixedValue;
+            value           uniform 300;
+        }
+        maxX
+        {
+            type            fixedValue;
+            value           uniform 300;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 300;
+            value           uniform 300;
+        }        
+        "topAir_to_.*"
+        {
+            type            compressible::turbulentTemperatureRadCoupledMixed;
+            Tnbr            T;
+            kappaMethod     fluidThermo;
+            QrNbr           none;
+            Qr              Qr;
+            value           uniform 300;
+        }
+    }
+}
+
+O2
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+        }
+        maxX
+        {
+            type            fixedValue;
+            value           uniform 0.23;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 0;
+            value           uniform 0;
+        }
+    }
+}
+
+N2
+{
+    internalField   uniform 1;
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+        }
+        minX
+        {
+            type            fixedValue;
+            value           uniform 0.75;
+        }
+        maxX
+        {
+            type            fixedValue;
+            value           uniform 0.77;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 1;
+            value           uniform 1;
+        }
+    }
+}
+
+CH4
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+        }
+        minX
+        {
+            type            fixedValue;
+            value           uniform 0.25;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 0;
+            value           uniform 0;
+        }
+    }
+}
+
+CO2
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+        }
+        minX
+        {
+            type            fixedValue;
+            value           uniform 0;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 0;
+            value           uniform 0;
+        }
+    }
+}
+
+H2O
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+        }
+        minX
+        {
+            type            fixedValue;
+            value           uniform 0;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 0;
+            value           uniform 0;
+        }
+    }
+}
+
+Ydefault
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            zeroGradient;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 0;
+            value           uniform 0;
+        }
+    }
+}
+
+epsilon
+{
+    internalField   uniform 0.01;
+    boundaryField
+    {
+        ".*"
+        {
+            type            epsilonWallFunction;
+            value           uniform 0.01;
+        }
+
+        minX
+        {
+            type            fixedValue;
+            value           uniform 0.01;
+        }
+        maxX
+        {
+            type            fixedValue;
+            value           uniform 0.01;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 0.01;
+            value           uniform 0.01;
+        }
+    }
+}
+
+k
+{
+    internalField   uniform 0.1;
+    boundaryField
+    {
+        ".*"
+        {
+            type            kqRWallFunction;
+            value           uniform 0.1;
+        }
+
+        minX
+        {
+            type            fixedValue;
+            value           uniform 0.1;
+        }
+        maxX
+        {
+            type            fixedValue;
+            value           uniform 0.1;
+        }
+        maxY
+        {
+            type            inletOutlet;
+            inletValue      uniform 0.1;
+            value           uniform 0.1;
+        }
+    }
+}
+
+p_rgh
+{
+    internalField   uniform 1e5;
+    boundaryField
+    {
+        ".*"
+        {
+            type            fixedFluxPressure;
+            value           uniform 1e5;
+        }
+        minX
+        {
+            type            zeroGradient;
+        }
+        maxX
+        {
+            type            zeroGradient;
+        }
+        maxY
+        {
+            type            fixedValue;
+            value           uniform 1e5;
+        }
+    }
+}
+
+p
+{
+    internalField   uniform 1e5;
+    boundaryField
+    {
+        ".*"
+        {
+            type            calculated;
+            value           uniform 1e5;
+        }
+    }
+}
+
+Qr
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            greyDiffusiveRadiationViewFactor;
+            emissivityMode  lookup;
+            Qro             uniform 0;
+            emissivity      uniform 1.0;
+            value           uniform 0;
+        }
+
+        "topAir_to_.*"
+        {
+            type            greyDiffusiveRadiationViewFactor;
+            emissivityMode  solidRadiation;
+            Qro             uniform 0;
+            value           uniform 0;
+        }
+    }
+}
+
+G
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            MarshakRadiation;
+            emissivityMode  lookup;
+            emissivity      uniform 1.0;
+            value           uniform 0;
+        }
+
+        "topAir_to_.*"
+        {
+            type            MarshakRadiation;
+            emissivityMode  solidRadiation;
+            value           uniform 0;
+        }
+    }
+}
+
+IDefault
+{
+    internalField   uniform 0;
+    boundaryField
+    {
+        ".*"
+        {
+            type            greyDiffusiveRadiation;
+            emissivityMode  lookup;
+            emissivity      uniform 1.0;
+            value           uniform 0;
+        }
+
+        "topAir_to_.*"
+        {
+            type            greyDiffusiveRadiation;
+            emissivityMode  solidRadiation;
+            value           uniform 0;
+        }
+    }
+}
+
+// ************************************************************************* //
