@@ -297,7 +297,7 @@ forAll(fluidRegions, i)
 	
 	forAll(composition.Y(), j)
 	{
-		    fieldsFluid[i].add(composition.Y()[i]);
+		    fieldsFluid[i].add(composition.Y()[j]);
 	}
 		
     fieldsFluid[i].add(reactionFluid[i].thermo().he());
